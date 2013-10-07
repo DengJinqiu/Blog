@@ -1,0 +1,5 @@
+- content_for :main do
+  - if params[:id] == "1"
+    = render 'zombie_attack'
+  - else
+    = render 'rails_website'
