@@ -16,22 +16,22 @@
 /tmp
 
 # from the github gitignore
-*.rbc
-*.sassc
-.sass-cache
-capybara-*.html
-.rspec
-.rvmrc
-/.bundle
-/vendor/bundle
-/log/*
-/tmp/*
-/db/*.sqlite3
-/public/system/*
-/coverage/
-/spec/tmp/*
-**.orig
-rerun.txt
-pickle-email-*.html
-.project
+# *.rbc
+# *.sassc
+# .sass-cache
+# capybara-*.html
+# .rspec
+# .rvmrc
+# /.bundle
+# /vendor/bundle
+# /log/*
+# /tmp/*
+# /db/*.sqlite3
+# /public/system/*
+# /coverage/
+# /spec/tmp/*
+# **.orig
+# rerun.txt
+# pickle-email-*.html
+# .project
 # config/initializers/secret_token.rb
