@@ -1,1 +1,74 @@
-Zombie Attack
+.row
+  .col-md-6
+    .panel.panel-default
+      .panel-heading Description
+      %ul.list-group
+        %li.list-group-item
+          This is an Android Game called 
+          %strong Zombie Attack.
+        %li.list-group-item
+          A release version can be down load here: 
+          %a{:href => "/files/ZombieAttack.apk"} Zombie Attack Release Version.
+        %li.list-group-item
+          The source code is on github: 
+          %a{:href => "https://github.com/DengJinqiu/ZombieAttack"} Github Repository.
+  .col-md-6
+    .panel.panel-default
+      .panel-heading Author
+      %table.table
+        %tr
+          %td
+            %strong Programming: 
+          %td
+            Lavanya Sivakumar, Yao Huang, Tom Prats, Jinqiu Deng.
+        %tr
+          %td
+            %strong Art: 
+          %td
+            Jessica Ruhl, Angela Hsieh.
+.row
+  .col-md-6
+    .panel.panel-default
+      .panel-heading Screen Shot
+      .panel-body
+        #carousel-generic.carousel.slide
+          <!-- Indicators -->
+          %ol.carousel-indicators
+            %li.active{"data-target" => "#carousel-generic", "data-slide-to" => "0"}
+            %li{"data-target" => "#carousel-generic", "data-slide-to" => "1"}
+            %li{"data-target" => "#carousel-generic", "data-slide-to" => "2"}
+            %li{"data-target" => "#carousel-generic", "data-slide-to" => "3"}
+            %li{"data-target" => "#carousel-generic", "data-slide-to" => "4"}
+            %li{"data-target" => "#carousel-generic", "data-slide-to" => "5"}
+
+          <!-- Wrapper for slides -->
+          .carousel-inner
+            .item.active
+              %img{"src" => "/assets/zombie_attack/zombie_attack_1.png", "alt" => "..."}
+              .carousel-caption
+            .item
+              %img{"src" => "/assets/zombie_attack/zombie_attack_2.png", "alt" => "..."}
+              .carousel-caption
+            .item
+              %img{"src" => "/assets/zombie_attack/zombie_attack_3.png", "alt" => "..."}
+              .carousel-caption
+            .item
+              %img{"src" => "/assets/zombie_attack/zombie_attack_4.png", "alt" => "..."}
+              .carousel-caption
+            .item
+              %img{"src" => "/assets/zombie_attack/zombie_attack_5.png", "alt" => "..."}
+              .carousel-caption
+            .item
+              %img{"src" => "/assets/zombie_attack/zombie_attack_6.png", "alt" => "..."}
+              .carousel-caption
+
+          <!-- Controls -->
+          %a.left.carousel-control{:href => "#carousel-generic", "data-slide" => "prev"}
+            %span.icon-prev
+          %a.right.carousel-control{:href => "#carousel-generic", "data-slide" => "next"}
+            %span.icon-next
+  .col-md-6
+    .panel.panel-default
+      .panel-heading Video Shot
+      .panel-body
+        %iframe{:width => "100%", :height => "auto", :src => "//www.youtube.com/embed/r9FlWTUMsrQ?feature=player_detailpage", :frameborder => "0", :allowfullscreen => true}
