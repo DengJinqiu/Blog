@@ -1,7 +1,7 @@
 - content_for :main do
   - if params[:id] == "1"
-    = render 'preparing_interview'
-  - elsif params[:id] == "2"
     = render 'zombie_attack'
-  - else
+  - elsif params[:id] == "2"
     = render 'rails_website'
+  - else
+    = render 'preparing_interview'
