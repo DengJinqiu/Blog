@@ -96,9 +96,9 @@ Bitwise Operation
 
 ###XOR
 
-1. a^1 = flip a
-2. a^0 = a
-3. a^a = 0
+1. a ^ 1 = flip a
+2. a ^ 0 = a
+3. a ^ a = 0
 
 ###Negative number
 
@@ -116,12 +116,36 @@ Bitwise Operation
 * \>> do not repeat the sign in front
 * Bitwise operations have priority.
 
-LeetCode Round 2
+Trie vs Hash Table
+====
+
+###Advantages
+* In order to get the hash value, we need to go through the string, it is the same for trie. And there are collisions in hash table. If we do not use all the charactors to compute the hash value, there are more collisions.
+* There is no need to provide a hash function or to change hash functions as more keys are added to a trie.
+* A trie can provide an alphabetical ordering of the entries by key.
+
+###Disadvantages
+* Tries can be slower in some cases than hash tables for looking up data, especially if the data is directly accessed on a hard disk drive or some other secondary storage device where the random-access time is high compared to main memory.
+* Some keys, such as floating point numbers, can lead to long chains and prefixes that are not particularly meaningful. Nevertheless a bitwise trie can handle standard ieee single and double format floating point numbers.
+* Some tries can require more space than a hash table, as memory may be allocated for each character in the search string, rather than a single chunk of memory for the whole entry, as in most hash tables.
+
+Leetcode round 2
 ================
 
 ###02/12/2014
 
-* Valid Palindrome
-* Remove Nth Node From End of List
-* Unique Binary Search Trees II
+* valid palindrome
+* remove nth node from end of list
+* unique binary search trees ii
 * Combinations
+
+###02/18/2014
+
+* Convert Sorted List to Binary Search Tree
+  * stack and queue
+* Minimum Depth of Binary Tree
+  * BFS or DFS
+* Maximum Depth of Binary Tree
+  * BFS or DFS
+* Rotate List
+  * C++ modulus have negative result, (a%b+b)%b
