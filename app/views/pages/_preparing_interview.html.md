@@ -117,7 +117,7 @@ Bitwise Operation
 * Bitwise operations have priority.
 
 Trie vs Hash Table
-====
+==================
 
 ###Advantages
 * In order to get the hash value, we need to go through the string, it is the same for trie. And there are collisions in hash table. If we do not use all the charactors to compute the hash value, there are more collisions.
@@ -128,6 +128,34 @@ Trie vs Hash Table
 * Tries can be slower in some cases than hash tables for looking up data, especially if the data is directly accessed on a hard disk drive or some other secondary storage device where the random-access time is high compared to main memory.
 * Some keys, such as floating point numbers, can lead to long chains and prefixes that are not particularly meaningful. Nevertheless a bitwise trie can handle standard ieee single and double format floating point numbers.
 * Some tries can require more space than a hash table, as memory may be allocated for each character in the search string, rather than a single chunk of memory for the whole entry, as in most hash tables.
+
+RESTful API
+===========
+
+###There is no standard rules
+    A simple example:
+            /teachers   /teachers/:id
+    Get     index       show
+    Post    create    
+    Put                 update
+    Delete  remove      destroy
+
+###Rails
+There are 7 actions, two interesting pairs are new/create and edit/update, new and edit are just used to render a view for create and update. So the actual actions are 5. Compared with the example above, no remove.
+
+HTTP Request
+===========
+
+* HTTP header
+  * request or respond line
+  * MIME header
+
+Design pattern
+==============
+
+###proxy vs decorator
+* proxy is used to reprsent the basic class.
+* decorator is used to change the behavior dynamically.
 
 Leetcode round 2
 ================
@@ -149,3 +177,8 @@ Leetcode round 2
   * BFS or DFS
 * Rotate List
   * C++ modulus have negative result, (a%b+b)%b
+
+###02/19/2014
+* Jump Game II
+  * Do not need to use DP.
+* Jump Game
