@@ -143,32 +143,60 @@ RESTful API
 ###Rails
 There are 7 actions, two interesting pairs are new/create and edit/update, new and edit are just used to render a view for create and update. So the actual actions are 5. Compared with the example above, no remove.
 
+HTTP is a stateless protocol. Sessions make it stateful. The session saves the current status of a user and the session id is sent to the user. The user can use this id to login without authenticate again.
+
+For URL like /users/1/students, the server can save 1 to params[:user\_id] automatically.
+
 HTTP Request
 ===========
+
+###HTTPS
+
+* Man In The Middle
+  * DNS spoofing: insert the man in the middle.
+  * Provide fake key to the server and client.
+
+* Layering HTTP on a transport layer security protocol.
+  * The public key from the server has certificate authority(CA).
+
+###HTTP Structure
 
 * HTTP header
   * request or respond line
   * MIME header
 
+* HTTP request body
+  * GET does not have body.
+  * POST contains the data.
+
+###port
+
+There are two ports, *source port* and *destination port*. When sending an http request, browser asks the OS for an available port as the *source port*, and the *destination port* is 80.
+When the server sends back the respond, the *destination port* is the browser port, the *source port* is 80.
+Thus, there could be multiple browsers running and send the requests to the same server through the same port.
+
+JQuery
+======
+
+It is a JavaScript library
+
 Design pattern
 ==============
 
 ###proxy vs decorator
-* proxy is used to reprsent the basic class.
+* proxy is used to represent the basic class.
 * decorator is used to change the behavior dynamically.
 
 Leetcode round 2
 ================
 
 ###02/12/2014
-
 * valid palindrome
 * remove nth node from end of list
 * unique binary search trees ii
 * Combinations
 
 ###02/18/2014
-
 * Convert Sorted List to Binary Search Tree
   * stack and queue
 * Minimum Depth of Binary Tree
@@ -178,7 +206,56 @@ Leetcode round 2
 * Rotate List
   * C++ modulus have negative result, (a%b+b)%b
 
+C++
+===
+
+* Call stack variable will get it's destructor called when get out of scope.
+
+* Smart pointer: scoped pointer, shared pointer(memory cycle, weak pointer).
+
+* Call stack has fixed size, which is defined when compile.
+
+* If you want to call a superclass constructor with an argument, you must use the subclass's constructor initialization list.
+
+* Destructors are called automatically in the reverse order of construction. (Base classes last). Do not call base class destructors.
+
+* Virtual function is dynamic binding. Other functions are static binding. One thing to be aware of is that if either transmitter or receiver attempted to invoke the storable constructor in their initialization lists, that call will be completely skipped when constructing a radio object.
+
+* Pure virtual function makes the class it is defined for abstract, it is an abstract function.
+
+* Virtual inheritance to solve the diamond problem. Create only one instance of the virtual based class. Virtual based class is constructed first and destroyed last.
+
 ###02/19/2014
 * Jump Game II
   * Do not need to use DP.
 * Jump Game
+
+###02/20/2014
+  * 3Sum
+
+###02/21/2014
+  * Binary Tree Level Order Traversal II
+  * Longest Palindromic Substring
+  * Sudoku Solver
+  * Longest Valid Parentheses
+
+###02/22/2014
+  * Spiral Matrix
+  * Regular Expression Matching
+  * Sqrt(x)
+    * Check int approximation
+    * Newton's method
+
+###02/23/2014
+  * Palindrome Partitioning
+  * Sort List
+  * Reorder List
+  * Longest Substring Without Repeating Characters
+    * Map.Entry
+  * Unique Paths
+  * Unique Paths II
+  * Minimum Path Sum
+  * Triangle
+
+###02/24/2014
+  * Interleaving String
