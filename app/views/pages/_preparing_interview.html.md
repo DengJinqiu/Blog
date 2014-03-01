@@ -110,6 +110,15 @@ iOS and Objective C
   * A sub-class always need to call the constructor of the super-class. Easy to forget.
   * Always return an instance of this class. Repeat it everywhere. Could use **instancetype**.
 
+Stack frame
+===========
+* The size of each stack frame is dynamically determined when compile.
+* The value in ebp is the old ebp, set some offset to get the arguments and local variables.
+* eip is ebp-4.
+* esp is move to the top of the current frame and the content is cleaned up.
+* Registers are push to stack staring at esp
+* When return esp first move to ebp, ebp set to old ebp and eip is pop.
+
 Java
 ====
 
