@@ -1,6 +1,25 @@
 iOS and Objective C
 ===================
 
+###UIViewController initialization
+1. **initWithNibName:bundle:** is called to initialize a view controller, the nib name and the place to find it is passed. In custom init function, **[super initWithNibName:bundle:]** should be called.
+2. When the controller needs to display, it tries to display the root view, if it is null, **loadView** will be called.
+3. If **loadView** is not override, it tries to find the nib file and use it to init root view. If it is override, it means we want to create view programmatically, the root view need to be assigned with a view.
+4. **viewDidLoad** do some additional init, especially for nib.
+5. **viewWillAppear**, going back and forth between views.
+6, **viewDidAppear**.
+
+###Blocks
+* Allow access to local variables, use week to avoid memory cycle.
+* \_\_block is used to change variable outside this block.
+
+###Threading and concurrency
+* The term thread is used to refer to a separate path of execution for code.
+* The term process is used to refer to a running executable, which can encompass multiple threads.
+* The term task is used to refer to the abstract concept of work that needs to be performed.
+* Each thread has its own execution stack and is scheduled for runtime separately by the kernel.
+* All threads in a single application share the same virtual memory space and have the same access rights as the process itself.
+
 ###Dynamic Binding
 * When a new object is created
   * Memory for it is allocated and erased to 0.
@@ -10,7 +29,8 @@ iOS and Objective C
   * Receiving object => self, and own selector => \_cmd
 
 ###Selector
-  Implement an object that uses the target-action design pattern. Target is an object, action is the method called on the object. In java, we use interface to do it.
+* Implement an object that uses the target-action design pattern. Target is an object, action is the method called on the object. In java, we use interface to do it.
+* SEL is the type of selector.
 
 ###NSInvocation
 * If you send a message to an object that does not handle that message, before announcing an error the runtime sends the object a forwardInvocation: message with an NSInvocation object as its sole argument—the NSInvocation object encapsulates the original message and the arguments that were passed with it.
@@ -27,6 +47,7 @@ iOS and Objective C
 
 ###Notification
 * Keep a list in the notification center. When sending a request, call the correspond object in the list.
+* It can also be implemented by target-action, but in order to use target-action, all object need to hold the delegate, if there are mutiple delegate, and they are not belongs to this object, it is not good to save the instance in it.
 
 ###library
 * Cocoa is the API for OS X.
@@ -56,13 +77,16 @@ iOS and Objective C
 * If you still need an instance variable, you’ll need to request that one be synthesized: @synthesize property = \_property.
 * The internal implementation and synchronization of atomic accessor methods is private, cannot override it.
 * atomic is not thread safety, two threads read and write at the same time is OK, but the order is undetermined.
-* Cache the week pointer in multi-threaded application. Assign a local strong pointer to it.
+* Cache the week pointer in multi-threaded application. Assign a local strong pointer to it. Which means, save the weak pointer in a local pointer (strong), to make sure that it will not be released in this function.
 
 ###Category
 * Declared in a separate header file and implemented in a separate source code file.
 * Can add class method and instance method, but it is not good to add property, since no local variables can be added by category.
-* Method cannot have same name with other categories or super class. Which one to call is undefined. Add prefix to category methods.
+* Method cannot have same name with other categories or super class. Which one to call is undefined. Add prefix to category methods. Since this is not inheritance, there is no inheritance structure.
 * Class extension is "ClassName ()" anonymous category. Only have one and instance variables can be added.
+
+###Static
+* Static method is send to Class, class is defined in NSObject protocol.
 
 ###Objective C Memory Management, [Advanced Memory Management Programming Guide](https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/MemoryMgmt/Articles/MemoryMgmt.html)
 
@@ -84,17 +108,26 @@ iOS and Objective C
 
 ####ARC, automatic reference counting, [Transitioning to ARC Release Notes](https://developer.apple.com/library/mac/releasenotes/ObjectiveC/RN-TransitioningToARC/Introduction/Introduction.html)
 1. Four qualifiers for object pointers, the two important are strong and weak. Strong reference will retain object, week will not. When strong get out of scope, release will be called. Strong property is the same, but when this object is deallocated, release will be called.
+3. unsafe\_unretained is like week but will not set to nil, when no strong pointer.
 2. Autoreleasing is used for multiple returns by pointers. It likes the strong pointer, but will hold the result after the function return.
+        NSError * error = nil;
+        [ database save: &error ];
+
+        NSError * __strong error = nil;
+        NSError * __autoreleasing tmpError = error;
+        [ database save: &tmpError ]; // count 1
+        error = tmpError; // count 2
+        // auto release, count 1
 
 ####Practical Tips
 1. Do not need to worry about class method like **[NSString stringWithFormat:]**, because they are using autorelease to return an object.
 2. Dealloc is never called manually. Only called by **[Super dealloc]**.
 3. For Property, you must declare the ownership of it, either by alloc it or retain it.
-4. Use set accessor as many as possible.
+4. Use set accessor as many as possible, since retain and release need to called on the new and old value.
 5. Do not use accessor methods in initializer and dealloc: 
    B extends A, but if accessor is used in A, it could be override in B, which means that the methods of B is called before B is initialized. The same for dealloc, method of B will be called after B disappeared.
 6. Use week reference to avoid memory cycle. The reference is week unless using retain.
-7. Be carefully when releasing the parent or collection of an object.
+7. Be carefully when releasing the parent or collection of an object, since if weak pointers hold it, it will disappear.
 8. Collections automatically call retain and release.
 
 ####Autorelease Pool Blocks
@@ -109,6 +142,7 @@ iOS and Objective C
 * **[[Class alloc] init]** alloc some memory on the heap and init it, two problems:
   * A sub-class always need to call the constructor of the super-class. Easy to forget.
   * Always return an instance of this class. Repeat it everywhere. Could use **instancetype**.
+* **self = [super init];** super is the same to self, but calling the function from the super class, the return value is almost always self, it is just an tradition to assign it to self. The rare cases, the return value is not self.
 
 Stack frame
 ===========
@@ -316,3 +350,21 @@ Leetcode round 2
 
 ###03/06/2014
   * Clone Graph
+
+###03/08/2014
+  * Merge Intervals
+  * Merge Sorted Array
+  * Merge k Sorted Lists
+  * Best Time to Buy and Sell Stock
+  * Best Time to Buy and Sell Stock II
+  * Best Time to Buy and Sell Stock III
+  * Word Search
+  * Valid Palindrome
+  * 4Sum
+
+###03/09/2014
+  * Word Break
+  * Populating Next Right Pointers in Each Node
+  * Populating Next Right Pointers in Each Node II
+  * Path Sum
+  * Path Sum II
